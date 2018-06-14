@@ -4,10 +4,11 @@
 ## Tools
 - OS : Windows 10 Home
 - language : HTML, CSS, JavaScript, jQuery
-- tools : Atom text editor, Github Desktop, Jasmine
+- tools : Atom text editor, Github Desktop, Jasmine(ver 2.1.2)
 
 
 ## Test list (at jasmine/spec/feedreader.js)
+It tests app.js at 'js/app.js'.
 - Check allFeeds variable is not empty.
 - Check allFeeds variable has url and name properties.
 - Check menu bar can hide and show of menu element.
