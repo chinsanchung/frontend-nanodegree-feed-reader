@@ -42,23 +42,6 @@ $(function() {
           $('.menu-icon-link').click();
           expect($('body').hasClass('menu-hidden')).toBe(true);
          });
-
-/* It's my code. It is longer than above code...
-          const menuClick = function () { $('.menu-icon-link').trigger('click') };
-          it('is showing when clicked', function () {
-            expect(menuClass).toBeDefined();
-            menuClick();
-            //I don't use menuClass in expect. Because menuClass has changed when menuClick() had excuted.
-            expect($('body')).not.toBe('menu-hidden');
-          });
-          it('is not showing when clicked again', function () {
-            // expect(menuClass).toBeDefined();
-            //I understand what reivew says. This menuClick is second click, first is excuted above.
-            menuClick();
-
-            expect(menuClass).toBe(true);
-          });
-*/
     });
     //This variable is used to count <div class="feed">'s child elements.
     const feeds = document.querySelector('.feed').children;
