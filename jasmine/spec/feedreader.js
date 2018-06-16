@@ -8,7 +8,7 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-        //I changed codes what reviews said about. It works and very simple. Amazing.
+        //I changed codes what reviews said about.
         it('have an url', function() {
           for (let feed of allFeeds) {
             expect(feed.url).toBeDefined();
@@ -25,9 +25,9 @@ $(function() {
          });
     });
 
-
     describe('The menu', function() {
-         //Changed to hasClass('menu-hidden'). It works well.
+         /* Changed to hasClass('menu-hidden').
+         It will make no fail if I add more classes to the body element. */
          let menuClass = $('body').hasClass('menu-hidden');
          it('element is menu-hidden', function () {
            expect(menuClass).toBeDefined();
@@ -43,40 +43,33 @@ $(function() {
           expect($('body').hasClass('menu-hidden')).toBe(true);
          });
     });
-    //This variable is used to count <div class="feed">'s child elements.
-    const feeds = document.querySelector('.feed').children;
 
     describe('Initial Entries', function() {
+      /* Fix code simple by review.
+      It passes done() directly as the callback for loadFeed. */
       beforeEach(function (done) {
-        loadFeed(0, function () {
-          done();
-        });
+        loadFeed(0, done);
       });
+      /* $('.feed .entry') : descendant selector to get the children of parent element.
+        It will return all .entry elements inside of .feed parent */
       it('loadFeed function works perfectly', function () {
-       beforeEach();
-       for (let feed of feeds) {
-        expect(feed).toBeDefined();
-        expect(feed).not.toBe('');
-       }
+        expect($('.feed .entry')).toBeDefined();
+        expect($('.feed .entry')).not.toBe('');
       });
     });
-    
-//Actually I still don't understand perfectly about this TODO. Is this solution right?
+
     describe('New Feed Selection', function() {
-         beforeEach(function () {
-           loadFeed(0, function (done) {
-             done();
-           });
-           loadFeed(1, function (done) {
-             done();
-           })
-         });
-         it('loadFeed function is loaded when', function () {
-           beforeEach();
-           for (let feed of feeds) {
-            expect(feed).toBeDefined();
-            expect(feed).not.toBe('');
-           }
-         });
+      //Second loadFeed will only be executed when first loadFeed is completed by using callback.
+      beforeEach(function () {
+        //first call start
+        loadFeed(0, function () {
+        //first call complete, and second call start(callback)
+        loadFeed(1, done);
+        });
+      });
+      it('loadFeed function is loaded when', function () {
+       expect($('.feed .entry')).toBeDefined();
+       expect($('.feed .entry')).not.toBe('');
+      });
     });
 }());
