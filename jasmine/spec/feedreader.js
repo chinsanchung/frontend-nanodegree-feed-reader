@@ -72,7 +72,7 @@ $(function() {
           });
         });
       });
-      it('first Feed and Second Feed is different', function (done) {
+      it('first Feed and Second Feed are different', function (done) {
        expect(firstFeed).not.toBe(secondFeed);
         done();
       });
