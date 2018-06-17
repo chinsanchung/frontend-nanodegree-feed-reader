@@ -58,18 +58,23 @@ $(function() {
       });
     });
 
+    let firstFeed, secondFeed;
     describe('New Feed Selection', function() {
       //Second loadFeed will only be executed when first loadFeed is completed by using callback.
-      beforeEach(function () {
-        //first call start
+      beforeEach(function (done) {
+        //first call start( loadFeed function needs callback function as parameter. )
         loadFeed(0, function () {
-        //first call complete, and second call start(callback)
-        loadFeed(1, done);
+          firstFeed = $('.feed').html(); //set firstFeed value
+          //first call complete, and second call start(Call callback function)
+          loadFeed(1, function () {
+            secondFeed = $('.feed').html(); //set secondFeed value
+            done();
+          });
         });
       });
-      it('loadFeed function is loaded when', function () {
-       expect($('.feed .entry')).toBeDefined();
-       expect($('.feed .entry')).not.toBe('');
+      it('first Feed and Second Feed is different', function (done) {
+       expect(firstFeed).not.toBe(secondFeed);
+        done();
       });
     });
 }());
